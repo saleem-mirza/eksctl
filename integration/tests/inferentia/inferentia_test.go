@@ -21,7 +21,6 @@ import (
 	"github.com/weaveworks/eksctl/integration/utilities/unowned"
 	api "github.com/weaveworks/eksctl/pkg/apis/eksctl.io/v1alpha5"
 	"github.com/weaveworks/eksctl/pkg/eks"
-	"github.com/weaveworks/eksctl/pkg/testutils"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -45,17 +44,16 @@ func init() {
 }
 
 func TestInferentia(t *testing.T) {
-	testutils.RegisterAndRun(t)
+	//testutils.RegisterAndRun(t)
 }
 
-var _ = PDescribe("(Integration) Inferentia nodes", func() {
+var _ = Describe("(Integration) Inferentia nodes", func() {
 	const (
 		initNG = "inf1-ng-0"
 		newNG  = "inf1-ng-1"
 	)
 
 	BeforeSuite(func() {
-		return
 		params.KubeconfigTemp = false
 		if params.KubeconfigPath == "" {
 			wd, _ := os.Getwd()
@@ -165,7 +163,6 @@ var _ = PDescribe("(Integration) Inferentia nodes", func() {
 	})
 
 	AfterSuite(func() {
-		return
 		params.DeleteClusters()
 		gexec.KillAndWait()
 		if params.KubeconfigTemp {
