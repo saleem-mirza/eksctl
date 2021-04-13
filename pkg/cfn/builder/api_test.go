@@ -176,6 +176,7 @@ users:
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1alpha1
+      provideClusterInfo: false
       {{if eq .Authenticator "aws"}}
       args:
       - eks
